@@ -1,0 +1,86 @@
+#### PRODUCT API's ####
+GET http://localhost:4000/products/product
+###
+GET http://localhost:4000/products/product/1
+###
+PUT http://localhost:4000/products/product/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Iphone14ProUp",
+    "description": "8gb-RAM,256gb-SSD Solid-Black",
+    "price": 140000,
+    "categoryId": 3,
+    "discountId": 1,
+    "inventoryId": 1
+}
+
+###
+POST http://localhost:4000/products/product/new
+Content-Type: application/json
+
+{
+    "name": "RealmePro9",
+    "description": "6gb-RAM,256gb-SSD Solid-Gold",
+    "price": 14030,
+    "categoryId": 3,
+    "discountId": 3,
+    "inventoryId": 1
+}
+
+###
+DELETE http://localhost:4000/products/product/remove/6
+
+#### CATEGORY API's ####
+GET http://localhost:4000/categories/allcategories
+###
+GET http://localhost:4000/categories/category/5
+###
+GET http://localhost:4000/categories/category/3/products
+###
+PUT http://localhost:4000/categories/category/5
+Content-Type: application/json
+
+{
+    "id":5,
+    "name":"Home and Kitchen",
+    "description":"Spoons,Plates and Home Utensils"
+}
+###
+POST http://localhost:4000/categories/category/new
+Content-Type: application/json
+
+{
+    "id": 5,
+    "name": "Home and Kitchen",
+    "description": "Spoons,Plates,cups,Dishes,Grinders"
+}
+###
+DELETE http://localhost:4000/categories/category/remove/5
+
+#### CARTITEMS API's ####
+GET http://localhost:4000/cart/cartItems
+###
+POST http://localhost:4000/cart/cartItems/add
+Content-Type: application/json
+
+{
+    "id":1,
+    "cartId":1,
+    "productId":1,
+    "quantity":1
+}
+###
+DELETE http://localhost:4000/cart/cartItems/remove/1
+###
+PUT http://localhost:4000/cart/cartItems/update
+Content-Type: application/json
+
+{
+    "cartId":1,
+    "productId":1, 
+    "quantity":1
+}
+
+#### CART API's ####

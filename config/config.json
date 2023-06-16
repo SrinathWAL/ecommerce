@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "sa",
+    "password": "Pvlns@1707",
+    "database": "ecommerce",
+    "host": "localhost",
+    "dialect": "mssql"
+  }
+}
