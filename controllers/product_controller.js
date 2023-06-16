@@ -2,15 +2,13 @@
 const expressAsyncHandler=require('express-async-handler')
 //dotenv file import
 require('dotenv').config()
-const db=require('../models/index')
+const db=require('../models/index');
 
 //To get all the Product Details
 const allProductDetails = expressAsyncHandler(async (req, res) => {
     let products = await db.Product.findAll({
-      attributes: {
-        exclude: ['createdAt', 'updatedAt',
-      'categoryId','discountId','inventoryId']
-      },
+      include:[db.Inventory,db.Category,db.Discount
+      ]
     });
     res.send({ message: "Product details are:", products });
   });

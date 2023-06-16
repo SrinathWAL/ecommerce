@@ -5,28 +5,20 @@ const { sequelize } = require('../models');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-     await queryInterface.bulkInsert('Categories', [{
+     await queryInterface.bulkInsert('Category', [{
         name: 'Electronics',
-        description: 'Electrical Equipment,Wires,Bulbs,Plugs,Others',
-        createdAt: Sequelize.literal('CURRENT_TIMESTAMP'),
-        updatedAt: Sequelize.literal('CURRENT_TIMESTAMP')
+        description: 'Electrical Equipment,Wires,Bulbs,Plugs,Others'
       },{
         name: 'Books',
-        description: 'Books,Comics,Magazines,paperback',
-        createdAt: Sequelize.literal('CURRENT_TIMESTAMP'),
-        updatedAt: Sequelize.literal('CURRENT_TIMESTAMP')
+        description: 'Books,Comics,Magazines,paperback'
       },{
         name: 'Mobiles',
-        description: 'Smartphones,Usb cables,chargers,Earphones,Earpods',
-        createdAt: Sequelize.literal('CURRENT_TIMESTAMP'),
-        updatedAt: Sequelize.literal('CURRENT_TIMESTAMP')
+        description: 'Smartphones,Usb cables,chargers,Earphones,Earpods'
       },{
         name: 'Fashion',
-        description: 'Jeans,Shirts,T-Shirts,Tracks,Shorts,Boxers',
-        createdAt: Sequelize.literal('CURRENT_TIMESTAMP'),
-        updatedAt: Sequelize.literal('CURRENT_TIMESTAMP')
+        description: 'Jeans,Shirts,T-Shirts,Tracks,Shorts,Boxers'
       }], {});
   },
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Categories',null, {});
+    await queryInterface.bulkDelete('Category',null, {});
 }};

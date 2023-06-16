@@ -11,16 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Discount.hasMany(models.Product,{foreignKey:{name: "discountId",}});
+      Discount.hasOne(models.Product,{foreignKey:{name:"discountId"}})
     }
   }
   Discount.init({
-    name: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    discountPercent: DataTypes.DOUBLE
+    name:DataTypes.STRING,
+    discountPercent: DataTypes.FLOAT
   }, {
     sequelize,
     modelName: 'Discount',
-  });
+    createdAt:false,
+    updatedAt:false,
+    freezeTableName:true
+    });
   return Discount;
 };

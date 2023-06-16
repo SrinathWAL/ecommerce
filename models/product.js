@@ -11,35 +11,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Product.belongsTo(models.Category, {
-        foreignKey: {
-          name: "categoryId",
-        },
-      });
-      Product.belongsTo(models.Discount, {
-        foreignKey: {
-          name: "discountId",
-        },
-      });
-      Product.belongsTo(models.Inventory, {
-        foreignKey: {
-          name: 'inventoryId',
-        },
-      });
-      Product.hasMany(models.cartItems,
-        {foreignKey:
-          {name: "productId"
-        }
-      });  
+      Product.belongsTo(models.Inventory,{foreignKey:{name:"inventoryId"}})
+      Product.belongsTo(models.Discount,{foreignKey:{name:"discountId"}})
+      Product.hasOne(models.CartItems,{foreignKey:{name:"productId"}})
+      Product.belongsTo(models.Category,{foreignKey:{name:"categoryId"}})
     }
   }
   Product.init({
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
-    price: DataTypes.DOUBLE,
+    price: DataTypes.DOUBLE
   }, {
     sequelize,
     modelName: 'Product',
+    createdAt:false,
+    updatedAt:false,
   });
   return Product;
 };

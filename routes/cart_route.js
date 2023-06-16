@@ -6,7 +6,6 @@ const CartApp=exp.Router();
 const {
     viewCartItems,
     addToCart,
-    updateCart,
     removeFromCart,
     clearCart,
     addUserCart
@@ -17,13 +16,11 @@ CartApp.use(exp.json())
 //Retrieve the contents of the cart
 CartApp.get('/cartItems',viewCartItems)
 //Add an item to the shopping cart
-CartApp.post('/cartItems/add',addToCart)
-//Update the quantity or other details in the cart
-CartApp.put('/cartItems/update',updateCart)
+CartApp.post('/cartItems/add/:userid',addToCart)
 //Remove an item from the cart
-CartApp.delete('/cartItems/remove/:id',removeFromCart)
+CartApp.delete('/cartItems/remove/user/:userid/product/:productid',removeFromCart)
 //Clear the entire cart
-CartApp.delete('/cartItems/clear',clearCart)
+CartApp.delete('/cartItems/clear/user/:userid',clearCart)
 
 //create a user cart
 CartApp.post('/carting',addUserCart)

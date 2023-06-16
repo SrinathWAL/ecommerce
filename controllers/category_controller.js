@@ -6,11 +6,7 @@ const db=require('../models/index')
 
 //To get all the categories
 const allCategories=expressAsyncHandler(async(req,res)=>{
-    let category=await db.Category.findAll({
-        attributes: {
-        exclude:['createdAt' ,'updatedAt']
-        }
-    })
+    let category=await db.Category.findAll()
     res.send({message:"The categories are : ",category})
 })
 

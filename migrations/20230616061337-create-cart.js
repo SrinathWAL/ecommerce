@@ -9,17 +9,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      cost: {
-        type: Sequelize.FLOAT
+      totalCost: {
+        type: Sequelize.DOUBLE,
+        allowNull:false
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+      userId:{
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references: {
+          model: "Users",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE"
       }
+     
     });
   },
   async down(queryInterface, Sequelize) {
