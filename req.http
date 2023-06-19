@@ -1,5 +1,5 @@
 #### PRODUCT API's ####
-GET http://localhost:4000/products/product
+GET http://localhost:4000/products/product/1/4
 ###
 GET http://localhost:4000/products/product/1
 ###
@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:4000/products/product/new
+POST http://localhost:4000/products/product/create
 Content-Type: application/json
 
 {
@@ -28,10 +28,10 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:4000/products/product/remove/6
+DELETE http://localhost:4000/products/product/6
 
 #### CATEGORY API's ####
-GET http://localhost:4000/categories/allcategories
+GET http://localhost:4000/categories/allcategories/1/4
 ###
 GET http://localhost:4000/categories/category/3
 ###
@@ -46,7 +46,7 @@ Content-Type: application/json
     "description":"Spoons,Plates and Home Utensils"
 }
 ###
-POST http://localhost:4000/categories/category/new
+POST http://localhost:4000/categories/category/create
 Content-Type: application/json
 
 {
@@ -55,7 +55,7 @@ Content-Type: application/json
     "description": "Spoons,Plates,cups,Dishes,Grinders"
 }
 ###
-DELETE http://localhost:4000/categories/category/remove/5
+DELETE http://localhost:4000/categories/category/5
 
 #### CARTITEMS API's ####
 GET http://localhost:4000/cart/cartItems
@@ -66,11 +66,14 @@ Content-Type: application/json
 {
     "id":1,
     "cartId":1,
-    "productId":1,
+    "productId":2,
     "quantity":1
 }
 ###
-DELETE http://localhost:4000/cart/cartItems/remove/user/1/product/2
+DELETE http://localhost:4000/cart/cartItems/user/1/product/2
 ###
 DELETE http://localhost:4000/cart/cartItems/clear/user/1
+###
+GET http://localhost:4000/cart/cartItmes/checkoutCart/user/1
+
 #### DISCOUNT API's ####

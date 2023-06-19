@@ -14,14 +14,14 @@ const {
 ProductApp.use(exp.json())
 
 //Get all product details
-ProductApp.get('/product',allProductDetails)
+ProductApp.get('/product/:pageNumber/:pageSize',allProductDetails)
 //Get Specific product details
 ProductApp.get('/product/:id',specificProductDetails)
 //Update the product details
 ProductApp.put('/product/:id',updateProductDetails)
 //Create the new product
-ProductApp.post('/product/new',createNewProduct)
+ProductApp.post('/product/create',createNewProduct)
 //delete an exsisting product
-ProductApp.delete('/product/remove/:id',deleteProduct)
+ProductApp.delete('/product/:id',deleteProduct)
 
 module.exports=ProductApp;
