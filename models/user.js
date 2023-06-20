@@ -12,17 +12,17 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasOne(models.Cart,{foreignKey:{name:"userId"}})
+      User.hasMany(models.Order,{foreignKey:{name:"userId"}})
     }
   }
   User.init({
     username: DataTypes.STRING,
     email: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    address: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'User',
-    createdAt: false,
-    updatedAt: false,
     freezeTableName:true
   });
   return User;

@@ -16,12 +16,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Discount.init({
     name:DataTypes.STRING,
-    discountPercent: DataTypes.FLOAT
+    discountPercent: DataTypes.FLOAT,
   }, {
     sequelize,
     modelName: 'Discount',
-    createdAt:false,
-    updatedAt:false,
     freezeTableName:true
     });
   return Discount;

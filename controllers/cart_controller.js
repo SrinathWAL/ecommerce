@@ -6,7 +6,7 @@ const db = require("../models/index");
 
 //Retrieve the contents of the cart
 const viewCartItems = expressAsyncHandler(async (req, res) => {
-  let item = await db.CartItems.findAll({ include: [db.Product] });
+  let item = await db.CartItems.findAll({ include: [{model:db.Product,include:["Discount"]}] });
   //If there are no items then display that cart is empty.
   if (item.length == 0) {
     res.status(200).send({ message: "No items in the cart!" });
@@ -104,6 +104,8 @@ const removeFromCart = expressAsyncHandler(async (req, res) => {
     res.status(500).send({ error: "Failed to delete item to cart" });
   }
 });
+
+
 //Clear the entire cart
 const clearCart = expressAsyncHandler(async (req, res) => {
   let shcart = await db.Cart.findOne({ where: { userId: req.params.userid } });
@@ -111,11 +113,15 @@ const clearCart = expressAsyncHandler(async (req, res) => {
   await db.CartItems.destroy({ where: { cartId: shcart.id } });
   res.status(200).send({ message: "Cart is all cleared!" });
 });
+
+
 //Add a user cart
 const addUserCart = expressAsyncHandler(async (req, res) => {
   let response = await db.Cart.create(req.body);
   res.status(201).send({ message: "Cart Created for the user!" });
 });
+
+
 //view the final Cart with the total cost
 const checkoutCart = expressAsyncHandler(async (req, res) => {
   let cart = await db.Cart.findOne({ where: { userId: req.params.userid } });
@@ -124,6 +130,8 @@ const checkoutCart = expressAsyncHandler(async (req, res) => {
     .status(200)
     .send({ message: " Cart details and cartItems are :", cart, cartItems });
 });
+
+
 const CartApp = {
   viewCartItems,
   addToCart,

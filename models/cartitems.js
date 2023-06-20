@@ -19,8 +19,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'CartItems',
-    createdAt:false,
-    updatedAt:false,
     freezeTableName:true
   });
   return CartItems;

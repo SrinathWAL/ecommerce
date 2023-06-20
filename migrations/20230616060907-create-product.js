@@ -53,6 +53,18 @@ module.exports = {
         },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
+      },
+      discountStatus:{
+        type: Sequelize.BOOLEAN,
+        allowNull:false
+      },
+      createdAt:{
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      updatedAt:{
+        type: Sequelize.DATE,
+        allowNull:false
       }
     });
   },

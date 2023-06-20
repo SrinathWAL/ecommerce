@@ -20,12 +20,11 @@ module.exports = (sequelize, DataTypes) => {
   Product.init({
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
-    price: DataTypes.DOUBLE
+    price: DataTypes.DOUBLE,
+    discountStatus: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Product',
-    createdAt:false,
-    updatedAt:false,
   });
   return Product;
 };

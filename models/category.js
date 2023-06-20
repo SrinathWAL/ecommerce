@@ -20,8 +20,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Category',
-    createdAt:false,
-    updatedAt:false,
     freezeTableName:true
   });
   return Category;
