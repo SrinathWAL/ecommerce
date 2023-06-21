@@ -51,7 +51,7 @@ const placeOrder = expressAsyncHandler(async (req, res) => {
         where: { cartId: userCart.id },
         transaction: t,
       });
-      //Update the CartCost to 0 .
+      //Update the Cart totalCost to 0 for the nextorder.
       await db.Cart.update(
         { totalCost: 0 },
         { where: { userId: req.params.id }, transaction: t }
@@ -63,11 +63,12 @@ const placeOrder = expressAsyncHandler(async (req, res) => {
       res.send({ message: "Shopping Cart is Empty" });
     }
   } catch (error) {
-    res.send({ message: "Error occured", error });
     await t.rollback();
+    res.send({ message: "Error occured", error });
   }
 });
 
+//To View all the Order Details of the user.
 const viewOrderDetails=expressAsyncHandler(async(req,res)=>{
     const orderDetails=await db.Order.findAll({where:{userId:req.params.id}})
     res.send({message: " Your Order details are as follows : ",orderDetails})
