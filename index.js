@@ -26,6 +26,10 @@ app.use('/cart',CartApp)
 const OrderApp=require('./routes/order_route')
 app.use('/order',OrderApp)
 
+//User Route import and usage
+const UserApp=require('./routes/user_route')
+app.use('/user',UserApp)
+
 app.use((err,req,res,next)=>{
     res.send({message:"Error occured",err});
 })

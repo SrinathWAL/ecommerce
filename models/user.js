@@ -11,19 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasOne(models.Cart,{foreignKey:{name:"userId"}})
-      User.hasMany(models.Order,{foreignKey:{name:"userId"}})
+      User.hasMany(models.CartItems,{foreignKey:{name:"userId"}})
+      User.hasOne(models.OrderDetails,{foreignKey:{name:"userId"}})
     }
   }
   User.init({
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    address: DataTypes.TEXT
+    address: DataTypes.TEXT,
+    mobileNumber : DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'User',
-    freezeTableName:true
   });
   return User;
 };

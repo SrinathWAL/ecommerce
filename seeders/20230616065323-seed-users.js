@@ -9,6 +9,7 @@ module.exports = {
       email: 'rajiv@gmail.com',
       password: 'rajiv',
       address: 'Flat-103,Lake Ridge,Nizampet,Hyderabad-500051',
+      mobileNumber: 1234567890,
       createdAt: now,
       updatedAt: now,
     },{
@@ -16,6 +17,7 @@ module.exports = {
       email: 'rohan@gmail.com',
       password: 'rohan',
       address: 'Flat-302,Park View,Suchitra,Hyderabad-500063',
+      mobileNumber: 1234567890,
       createdAt: now,
       updatedAt: now,
     },{
@@ -23,6 +25,7 @@ module.exports = {
       email: 'maneesh@gmail.com',
       password: 'maneesh',
       address: 'DNO-6/24,Nizam Road,Alwal,Hyderabad-500060',
+      mobileNumber: 1234567890,
       createdAt: now,
       updatedAt: now,
     },{
@@ -30,6 +33,7 @@ module.exports = {
       email: 'smriti@gmail.com',
       password: 'smriti',
       address: 'DN-3/2/251,Loyala Colony,Kompally,Hyderabad-500064',
+      mobileNumber: 1234567890,
       createdAt: now,
       updatedAt: now,
     },{
@@ -37,6 +41,7 @@ module.exports = {
       email: 'sudha@gmail.com',
       password: 'sudha',
       address : 'FNO-201,Amulya Heights,ECIL,Hyderabad-500071',
+      mobileNumber: 1234567890,
       createdAt: now,
       updatedAt: now,
     }], {});

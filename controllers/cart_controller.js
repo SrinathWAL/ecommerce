@@ -23,19 +23,20 @@ const addToCart = expressAsyncHandler(async (req, res) => {
   const t = await db.sequelize.transaction();
   try {
     //Cart of the specific user is is taken through parameter
-    let shcart = await db.Cart.findOne({
-      where: { userId: req.params.userid },
+    let shcart = await db.User.findOne({
+      where: {id:req.body.userId },
     });
+    console.log(shcart)
     //Find the specific Product in the cart
     let exsistingProduct = await db.CartItems.findOne({
-      where: { productId: req.body.productId, cartId: shcart.id },
+      where: { productId: req.body.productId, userId: shcart.id },
     });
     if (exsistingProduct) {
       //Increment the quantity in the product if it is already in the cart
       await db.CartItems.update(
         { quantity: exsistingProduct.quantity + req.body.quantity },
         {
-          where: { productId: req.body.productId, cartId: shcart.id },
+          where: { productId: req.body.productId, userId: shcart.id },
           transaction: t,
         }
       );
@@ -44,16 +45,16 @@ const addToCart = expressAsyncHandler(async (req, res) => {
       await db.CartItems.create(req.body, { transaction: t });
     }
     //Get the details of the cart product from the product model
-    let cartproduct = await db.Product.findOne({
-      where: { id: req.body.productId },
-    });
-    //Find the cost = multiply the price of the product with quantity
-    let cost = cartproduct.price * req.body.quantity;
+    // let cartproduct = await db.Product.findOne({
+    //   where: { id: req.body.productId },
+    // });
+    // //Find the cost = multiply the price of the product with quantity
+    // let cost = cartproduct.price * req.body.quantity;
     //Update the cost in the Final cart for the user.
-    await db.Cart.update(
-      { totalCost: shcart.totalCost + cost },
-      { where: { userId: req.params.userid }, transaction: t }
-    );
+    // await db.Cart.update(
+    //   { totalCost: shcart.totalCost + cost },
+    //   { where: { userId: req.params.userid }, transaction: t }
+    // );
     await t.commit();
     res.status(200).send({ message: "Item added to cart" });
   } catch (error) {
@@ -67,26 +68,26 @@ const addToCart = expressAsyncHandler(async (req, res) => {
 const removeFromCart = expressAsyncHandler(async (req, res) => {
   const t = await db.sequelize.transaction();
   try {
-    //Cart of the specific user is is taken through parameter
-    let shcart = await db.Cart.findOne({
-      where: { userId: req.params.userid },
+    //Cart of the specific user is taken through parameter
+    let shcart = await db.User.findOne({
+      where: {id:req.params.userid },
     });
     //Find the specific Product in the cart
     let exsistingProduct = await db.CartItems.findOne({
-      where: { productId: req.params.productid, cartId: shcart.id },
+      where: { productId: req.params.productid, userId: shcart.id },
     });
     if (exsistingProduct) {
       //Get the details of the cart product from the product model
-      let cartproduct = await db.Product.findOne({
-        where: { id: req.params.productid },
-      });
-      //Find the cost = multiply the price of the product with quantity
-      let cost = cartproduct.price * exsistingProduct.quantity;
-      //Update the cost in the Final cart for the user.
-      await db.Cart.update(
-        { totalCost: shcart.totalCost - cost },
-        { where: { userId: req.params.userid }, transaction: t }
-      );
+      // let cartproduct = await db.Product.findOne({
+      //   where: { id: req.params.productid },
+      // });
+      // //Find the cost = multiply the price of the product with quantity
+      // let cost = cartproduct.price * exsistingProduct.quantity;
+      // //Update the cost in the Final cart for the user.
+      // await db.Cart.update(
+      //   { totalCost: shcart.totalCost - cost },
+      //   { where: { userId: req.params.userid }, transaction: t }
+      // );
       //remove the item from the cart
       await db.CartItems.destroy({
         where: { productId: req.params.productid },
@@ -108,28 +109,11 @@ const removeFromCart = expressAsyncHandler(async (req, res) => {
 
 //Clear the entire cart
 const clearCart = expressAsyncHandler(async (req, res) => {
-  let shcart = await db.Cart.findOne({ where: { userId: req.params.userid } });
-  await db.Cart.update({ totalCost: 0 }, { where: { id: shcart.id } });
-  await db.CartItems.destroy({ where: { cartId: shcart.id } });
+  let shcart = await db.User.findOne({ where: { id: req.params.userid } });
+  await db.CartItems.destroy({ where: { userId: shcart.id } });
   res.status(200).send({ message: "Cart is all cleared!" });
 });
 
-
-//Add a user cart
-const addUserCart = expressAsyncHandler(async (req, res) => {
-  let response = await db.Cart.create(req.body);
-  res.status(201).send({ message: "Cart Created for the user!" });
-});
-
-
-//view the final Cart with the total cost
-const checkoutCart = expressAsyncHandler(async (req, res) => {
-  let cart = await db.Cart.findOne({ where: { userId: req.params.userid } });
-  let cartItems = await db.CartItems.findAll({ where: { cartId: cart.id } });
-  res
-    .status(200)
-    .send({ message: " Cart details and cartItems are :", cart, cartItems });
-});
 
 
 const CartApp = {
@@ -137,7 +121,5 @@ const CartApp = {
   addToCart,
   removeFromCart,
   clearCart,
-  addUserCart,
-  checkoutCart,
 };
 module.exports = CartApp;

@@ -24,6 +24,10 @@ module.exports = {
         type: Sequelize.DOUBLE,
         allowNull:false
       },
+      discountStatus:{
+        type: Sequelize.BOOLEAN,
+        allowNull:false
+      },
       categoryId:{
         type: Sequelize.INTEGER,
         allowNull:false,
@@ -53,10 +57,6 @@ module.exports = {
         },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
-      },
-      discountStatus:{
-        type: Sequelize.BOOLEAN,
-        allowNull:false
       },
       createdAt:{
         type: Sequelize.DATE,

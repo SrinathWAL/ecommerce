@@ -21,6 +21,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull:false
       },
+      address:{
+        type: Sequelize.TEXT,
+        allowNull:false
+      },
+      mobileNumber:{
+        type: Sequelize.INTEGER,
+        allowNull:false
+      },
       createdAt:{
         type: Sequelize.DATE,
         allowNull: false
@@ -29,10 +37,7 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull:false
       },
-      address:{
-        type: Sequelize.TEXT,
-        allowNull:false
-      }
+      
     });
   },
   async down(queryInterface, Sequelize) {

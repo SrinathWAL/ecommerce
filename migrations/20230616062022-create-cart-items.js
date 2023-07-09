@@ -23,11 +23,11 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
-      cartId:{
+      userId:{
         type: Sequelize.INTEGER,
         allowNull:false,
         references: {
-          model: "Cart",
+          model: "Users",
           key: "id",
         },
         onUpdate: "CASCADE",
@@ -41,7 +41,6 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull:false
       }
-
     });
   },
   async down(queryInterface, Sequelize) {

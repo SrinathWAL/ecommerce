@@ -1,5 +1,5 @@
 #### PRODUCT API's ####
-GET http://localhost:4000/products/product/1/4
+GET http://localhost:4000/products/product/1/3
 ###
 GET http://localhost:4000/products/product/1
 ###
@@ -60,24 +60,40 @@ DELETE http://localhost:4000/categories/category/5
 #### CARTITEMS API's ####
 GET http://localhost:4000/cart/cartItems
 ###
-POST http://localhost:4000/cart/cartItems/add/1
+POST http://localhost:4000/cart/cartItems/add
 Content-Type: application/json
 
 {
-    "id":1,
-    "cartId":1,
-    "productId":1,
+    "userId":1,
+    "productId":2,
     "quantity":1
 }
 ###
-DELETE http://localhost:4000/cart/cartItems/user/1/product/2
+DELETE http://localhost:4000/cart/cartItems/user/1/product/1
 ###
 DELETE http://localhost:4000/cart/cartItems/clear/user/1
-###
-GET http://localhost:4000/cart/cartItmes/checkoutCart/user/1
 
 #### ORDER API's ####
 
-GET http://localhost:4000/order/placeOrder/user/1
+POST http://localhost:4000/order/placeOrder/user
+Content-Type: application/json
+
+{   
+    "id":1
+
+}
+
 ###
 GET http://localhost:4000/order/orderDetails/user/1
+###
+GET http://localhost:4000/order/orderItems/1
+
+
+### USER API' ####
+POST http://localhost:4000/user/loginUser
+Content-Type: application/json
+
+{
+    "email":"rajiv@gmail.com",
+    "password":"rajiv"
+}
